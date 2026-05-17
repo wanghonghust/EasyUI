@@ -73,11 +73,11 @@
 ### AI Chat
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/main.png" alt="Main Chat Interface" width="700">
+  <img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/main.png" alt="Main Chat Interface" width="700">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/ai-assistant.png" alt="AI Assistant" width="700">
+  <img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/ai-assistant.png" alt="AI Assistant" width="700">
 </p>
 
 ### EasyUI Components
@@ -89,9 +89,9 @@
     <td align="center"><b>Basic</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/button.png" alt="Button" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/input.png" alt="Input" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/select.png" alt="Select" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/button.png" alt="Button" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/input.png" alt="Input" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/select.png" alt="Select" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Basic</b></td>
@@ -99,9 +99,9 @@
     <td align="center"><b>Basic</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/cascader.png" alt="Cascader" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/dropdown.png" alt="DropDown" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/chipInput.png" alt="ChipInput" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/cascader.png" alt="Cascader" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/dropdown.png" alt="DropDown" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/chipInput.png" alt="ChipInput" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Basic</b></td>
@@ -109,9 +109,9 @@
     <td align="center"><b>Basic</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/switch_check_radio_toggle.png" alt="Switch / Checkbox / Radio / Toggle" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/slider_rate_segmented.png" alt="Slider / Rate / Segmented" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/colorpicker.png" alt="ColorPicker" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/switch_check_radio_toggle.png" alt="Switch / Checkbox / Radio / Toggle" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/slider_rate_segmented.png" alt="Slider / Rate / Segmented" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/colorpicker.png" alt="ColorPicker" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Basic</b></td>
@@ -119,9 +119,9 @@
     <td align="center"><b>Display</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/material_icon.png" alt="Material Icon" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/divider_card_carousel_lyric_icon_markdownview.png" alt="Card / Carousel / MarkdownView" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/badge_tag_avatar_progress_loading_skeleton_empty_timeline.png" alt="Badge / Tag / Avatar / Progress / Timeline" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/material_icon.png" alt="Material Icon" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/divider_card_carousel_lyric_icon_markdownview.png" alt="Card / Carousel / MarkdownView" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/badge_tag_avatar_progress_loading_skeleton_empty_timeline.png" alt="Badge / Tag / Avatar / Progress / Timeline" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Display</b></td>
@@ -129,9 +129,9 @@
     <td align="center"><b>Display</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/table_pagination_transfer.png" alt="Table / Pagination / Transfer" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/chart.png" alt="Chart" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/imgview.png" alt="ImageViewer" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/table_pagination_transfer.png" alt="Table / Pagination / Transfer" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/chart.png" alt="Chart" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/imgview.png" alt="ImageViewer" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Display</b></td>
@@ -139,9 +139,9 @@
     <td align="center"><b>Display</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/qrcode.png" alt="QRCode" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/watermask.png" alt="Watermark" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/floating_action_button.png" alt="FloatingActionButton" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/qrcode.png" alt="QRCode" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/watermask.png" alt="Watermark" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/floating_action_button.png" alt="FloatingActionButton" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Display</b></td>
@@ -149,9 +149,9 @@
     <td align="center"><b>Navigation</b></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/filedropzone.png" alt="FileDropZone" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/alert_tooltip_dialog_drawer.png" alt="Alert / Tooltip / Dialog / Drawer" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/breadcrumb_tabbar_treeview_collapse.png" alt="Breadcrumb / TabBar / TreeView" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/filedropzone.png" alt="FileDropZone" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/alert_tooltip_dialog_drawer.png" alt="Alert / Tooltip / Dialog / Drawer" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/breadcrumb_tabbar_treeview_collapse.png" alt="Breadcrumb / TabBar / TreeView" width="300"></td>
   </tr>
   <tr>
     <td align="center"><b>Navigation</b></td>
@@ -159,8 +159,8 @@
     <td></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/menubar.png" alt="MenuBar" width="300"></td>
-    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/main/imgs/components/commandpalette.png" alt="CommandPalette" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/menubar.png" alt="MenuBar" width="300"></td>
+    <td><img src="https://raw.githubusercontent.com/wanghonghust/EasyUI/refs/heads/main/imgs/components/commandpalette.png" alt="CommandPalette" width="300"></td>
     <td></td>
   </tr>
 </table>
