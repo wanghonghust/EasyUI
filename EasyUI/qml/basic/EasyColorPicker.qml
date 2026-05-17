@@ -183,19 +183,36 @@ Rectangle {
         }
     }
 
-    EasyIconFont {
+    Item {
         id: clearBtn
         visible: root.clearable && root.enabled && root.currentColor !== ""
         anchors.right: dropIcon.left
         anchors.rightMargin: 2
         anchors.verticalCenter: parent.verticalCenter
-        icon: EasyIcon.material.close
-        iconSize: root.computedFontSize
-        color: EasyTheme.color.placeholder
+        width: clearIcon.iconSize + 8
+        height: width
+        z: 1
+
+        Rectangle {
+            anchors.fill: parent
+            radius: width / 2
+            color: clearBtnHover.hovered ? EasyTheme.color.hover : "transparent"
+            Behavior on color { ColorAnimation { duration: EasyTheme.transition.fast } }
+        }
+
+        EasyIconFont {
+            id: clearIcon
+            anchors.centerIn: parent
+            icon: EasyIcon.material.close
+            iconSize: root.computedFontSize
+            color: clearBtnHover.hovered ? EasyTheme.color.text : EasyTheme.color.placeholder
+            Behavior on color { ColorAnimation { duration: EasyTheme.transition.fast } }
+        }
+
+        HoverHandler { id: clearBtnHover }
 
         MouseArea {
             anchors.fill: parent
-            anchors.margins: -4
             cursorShape: Qt.PointingHandCursor
             onClicked: {
                 root.currentColor = ""

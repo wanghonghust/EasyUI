@@ -164,7 +164,7 @@ Rectangle {
         id: menu
         width: root.width
         height: dropDownHeight
-        padding: 8
+        padding: 2
         clip: true
 
         property bool calculatedDropUp: false

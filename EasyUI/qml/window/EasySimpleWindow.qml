@@ -23,10 +23,6 @@ import QWindowKit 1.0
  */
 Window {
     id: singleRoot
-    width: 800
-    height: 600
-    minimumWidth: 400
-    minimumHeight: 300
 
     property bool showWhenReady: true
     property bool onlyCloseButton: false

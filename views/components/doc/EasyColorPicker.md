@@ -17,14 +17,17 @@ EasyColorPicker {
 
 | 属性 | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
-| `currentColor` | color | "#FF6366f1" | 当前颜色 |
+| `currentColor` | string | "#FF4f6ef7" | 当前颜色值（#AARRGGBB） |
+| `placeholder` | string | "选择颜色" | 占位文字 |
 | `size` | int | EasyTheme.size.sizeNormal | 尺寸（Mini/Small/Normal/Large） |
 | `clearable` | bool | false | 是否可清除 |
 | `enabled` | bool | true | 是否可用 |
+| `presetColors` | var | 内置12色 | 预设颜色列表 |
 
 ## 信号
 
-- `colorSelected(color color)` — 颜色选择确认时触发
+- `colorSelected(string color)` — 颜色选择确认时触发
+- `cleared()` — 清除颜色时触发
 
 ## 示例
 

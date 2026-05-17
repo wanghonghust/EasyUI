@@ -61,9 +61,9 @@ Item {
     EasySimpleWindow {
         id: root
         title: activeTab === 0 ? "会话记录" : (activeTab === 1 ? "会话配置" : (activeTab === 2 ? "模型配置" : "OSS 配置"))
-        width: 700
+        width: 800
         height: 560
-        minimumWidth: 560
+        minimumWidth: 700
         minimumHeight: 400
         visible: false
         showWhenReady: false

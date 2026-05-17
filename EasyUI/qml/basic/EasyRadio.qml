@@ -54,23 +54,12 @@ Item {
         width: computedCircleSize
         height: computedCircleSize
         radius: width / 2
-        color: hoverArea.containsMouse && !root.checked ? EasyTheme.color.hover : "transparent"
+        color: EasyTheme.isDark ? EasyTheme.color.background : "#ffffff"
         border.color: root.checked ? EasyTheme.color.primary : (hoverArea.containsMouse ? EasyTheme.color.primary : EasyTheme.color.border)
-        border.width: root.checked ? computedCircleSize * 0.28 : EasyTheme.size.borderWidth
+        border.width: root.checked ? Math.round(computedCircleSize * 0.28) : EasyTheme.size.borderWidth
 
-        Behavior on color { ColorAnimation { duration: EasyTheme.transition.fast } }
         Behavior on border.color { ColorAnimation { duration: EasyTheme.transition.fast } }
         Behavior on border.width { NumberAnimation { duration: EasyTheme.transition.fast } }
-
-        Rectangle {
-            id: dot
-            visible: root.checked
-            anchors.centerIn: parent
-            width: Math.round(parent.width * 0.4)
-            height: width
-            radius: width / 2
-            color: EasyTheme.color.primary
-        }
     }
 
     Text {
