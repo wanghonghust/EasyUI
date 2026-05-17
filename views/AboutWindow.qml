@@ -7,12 +7,12 @@ import Handler
 EasySimpleWindow {
     id: aboutWindow
     title: "关于 EasyChat"
-    width: 560
-    height: 640
-    minimumWidth: 560
-    minimumHeight: 640
-    maximumWidth: 560
-    maximumHeight: 640
+    width: 860
+    height: 840
+    minimumWidth: 860
+    minimumHeight: 840
+    maximumWidth: 860
+    maximumHeight: 840
     onlyCloseButton: true
 
     property string readmeContent: ""

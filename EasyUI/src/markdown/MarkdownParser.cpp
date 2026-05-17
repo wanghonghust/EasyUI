@@ -328,22 +328,24 @@ Block MarkdownParser::parseTable(const QString &line, QStringList &lines, int &i
 }
 
 Block MarkdownParser::parseHtmlBlock(const QString &line, QStringList &lines, int &index) {
-    Block block;
-    block.type = BlockType::HtmlBlock;
-    block.rawText = line;
-
     QString trimmed = line.trimmed();
     QRegularExpression tagRe("^<([a-zA-Z][a-zA-Z0-9]*)");
     QRegularExpressionMatch tagMatch = tagRe.match(trimmed);
     if (!tagMatch.hasMatch()) {
+        Block block;
+        block.type = BlockType::HtmlBlock;
+        block.rawText = line;
         ++index;
         return block;
     }
 
-    QString tagName = tagMatch.captured(1);
+    QString tagName = tagMatch.captured(1).toLower();
 
     // Self-closing: <img ... />, <br />
     if (trimmed.contains("/>")) {
+        Block block;
+        block.type = BlockType::HtmlBlock;
+        block.rawText = line;
         ++index;
         return block;
     }
@@ -353,28 +355,158 @@ Block MarkdownParser::parseHtmlBlock(const QString &line, QStringList &lines, in
         "br", "hr", "img", "input", "meta", "link",
         "area", "base", "col", "embed", "source", "track", "wbr"
     };
-    if (voidElements.contains(tagName.toLower())) {
+    if (voidElements.contains(tagName)) {
+        Block block;
+        block.type = BlockType::HtmlBlock;
+        block.rawText = line;
         ++index;
         return block;
     }
 
-    // Same-line closing tag
+    // Collect all lines for this HTML block
+    QString fullText = line;
     QRegularExpression closeRe(QString("</%1\\s*>").arg(tagName));
+
     if (closeRe.match(trimmed).hasMatch()) {
+        // Same-line closing tag
+        Block block;
+        block.type = BlockType::HtmlBlock;
+        block.rawText = line;
         ++index;
+        // Try to parse as table
+        if (tagName == "table") {
+            Block tableBlock = parseHtmlTable(fullText);
+            if (tableBlock.type == BlockType::Table)
+                return tableBlock;
+        }
         return block;
     }
 
     // Multi-line: collect until closing tag found
+    int startIdx = index;
     ++index;
     while (index < lines.size()) {
         QString nextLine = lines[index];
-        block.rawText += "\n" + nextLine;
+        fullText += "\n" + nextLine;
         ++index;
         if (closeRe.match(nextLine.trimmed()).hasMatch())
             break;
     }
 
+    Block block;
+    block.type = BlockType::HtmlBlock;
+    block.rawText = fullText;
+
+    // Try to parse <table> as structured table
+    if (tagName == "table") {
+        Block tableBlock = parseHtmlTable(fullText);
+        if (tableBlock.type == BlockType::Table)
+            return tableBlock;
+    }
+
+    return block;
+}
+
+Block MarkdownParser::parseHtmlTable(const QString &html) {
+    Block block;
+    block.type = BlockType::Unknown;
+
+    // Extract all rows from <tr>...</tr>
+    QRegularExpression trRe("<tr[^>]*>([\\s\\S]*?)</tr>");
+    QRegularExpression tdThRe("<(?:td|th)[^>]*>([\\s\\S]*?)</(?:td|th)>");
+
+    QRegularExpressionMatchIterator trIt = trRe.globalMatch(html);
+    QStringList headers;
+    QList<QStringList> dataRows;
+    bool isFirstRow = true;
+    int colCount = 0;
+
+    while (trIt.hasNext()) {
+        QRegularExpressionMatch trMatch = trIt.next();
+        QString rowContent = trMatch.captured(1);
+
+        QStringList cells;
+        QRegularExpressionMatchIterator cellIt = tdThRe.globalMatch(rowContent);
+while (cellIt.hasNext()) {
+            QRegularExpressionMatch cellMatch = cellIt.next();
+            QString cellContent = cellMatch.captured(1).trimmed();
+            // Convert <img> tags to markdown image syntax ![alt](url)
+            QRegularExpression imgRe("(?i)<img\\s[^>]*>");
+            QRegularExpression srcRe("src\\s*=\\s*[\"']([^\"']*)[\"']", QRegularExpression::CaseInsensitiveOption);
+            QRegularExpression altRe("alt\\s*=\\s*[\"']([^\"']*)[\"']", QRegularExpression::CaseInsensitiveOption);
+            QString result;
+            int lastEnd = 0;
+            QRegularExpressionMatchIterator imgIt = imgRe.globalMatch(cellContent);
+            while (imgIt.hasNext()) {
+                QRegularExpressionMatch imgMatch = imgIt.next();
+                result += cellContent.mid(lastEnd, imgMatch.capturedStart() - lastEnd);
+                QString tag = imgMatch.captured(0);
+                auto srcMatch = srcRe.match(tag);
+                auto altMatch = altRe.match(tag);
+                QString src = srcMatch.hasMatch() ? srcMatch.captured(1) : "";
+                QString alt = altMatch.hasMatch() ? altMatch.captured(1) : "";
+                if (!src.isEmpty()) {
+                    result += "![" + alt + "](" + src + ")";
+                }
+                lastEnd = imgMatch.capturedEnd();
+            }
+            result += cellContent.mid(lastEnd);
+            cellContent = result;
+            // Strip remaining HTML tags, keep text content
+            cellContent.remove(QRegularExpression("<[^>]*>"));
+            // Decode common HTML entities
+            cellContent.replace("&amp;", "&");
+            cellContent.replace("&lt;", "<");
+            cellContent.replace("&gt;", ">");
+            cellContent.replace("&quot;", "\"");
+            cellContent.replace("&#39;", "'");
+            cellContent.replace("&nbsp;", " ");
+            cells.append(cellContent);
+        }
+
+        if (cells.isEmpty())
+            continue;
+
+        // Detect header row: check if cells are inside <th>
+        QRegularExpression thRe("<th[^>]*>");
+        QString rowHtml = trMatch.captured(0);
+        bool isHeaderRow = thRe.match(rowHtml).hasMatch();
+
+        if (isFirstRow) {
+            headers = cells;
+            colCount = cells.size();
+            isFirstRow = false;
+        } else {
+            dataRows.append(cells);
+        }
+    }
+
+    if (headers.isEmpty())
+        return block;
+
+    block.type = BlockType::Table;
+    block.level = colCount;
+
+    // Build spans in the same format as GFM tables
+    // spans[0] = header row joined by "|", bold
+    TextSpan headerSpan;
+    headerSpan.text = headers.join("|");
+    headerSpan.bold = true;
+    block.spans.append(headerSpan);
+
+    // spans[1..N] = data rows joined by "|"
+    for (const QStringList &row : dataRows) {
+        TextSpan span;
+        // Pad row to colCount
+        QStringList padded;
+        for (int i = 0; i < colCount; ++i) {
+            padded.append(i < row.size() ? row[i] : "");
+        }
+        span.text = padded.join("|");
+        block.spans.append(span);
+    }
+
+    block.rawText = html;
     return block;
 }
 

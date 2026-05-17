@@ -23,6 +23,8 @@
 int main(int argc, char *argv[])
 {
     // 高 DPI 支持（必须在 QGuiApplication 创建之前设置）
+
+    // 高 DPI 支持（必须在 QGuiApplication 创建之前设置）
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 

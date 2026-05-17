@@ -29,6 +29,7 @@ private:
     Block parseBlockQuote(QStringList &lines, int &index);
     Block parseTable(const QString &line, QStringList &lines, int &index);
     Block parseHtmlBlock(const QString &line, QStringList &lines, int &index);
+    Block parseHtmlTable(const QString &html);
     QStringList parseTableRow(const QString &line);
 
     QList<TextSpan> parseInline(const QString &text);

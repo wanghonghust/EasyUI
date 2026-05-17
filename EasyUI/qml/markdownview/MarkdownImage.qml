@@ -213,32 +213,31 @@ Rectangle {
             return;
         }
 
-        if (!isSvgSource(root.imageUrl)) {
-            root.resolvedImageSource = root.imageUrl;
+        if (isSvgSource(root.imageUrl)) {
+            root.resolvedImageSource = "";
+            root.compatibilityLoading = true;
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState !== XMLHttpRequest.DONE || requestToken !== root.imageRequestToken) {
+                    return;
+                }
+                root.compatibilityLoading = false;
+                if (xhr.status >= 200 && xhr.status < 300 && xhr.responseText) {
+                    var sanitized = sanitizeSvgMarkup(xhr.responseText);
+                    root.resolvedImageSource = "data:image/svg+xml;utf8," + encodeURIComponent(sanitized);
+                } else {
+                    root.compatibilityError = true;
+                    root.compatibilityErrorText = qsTr("Failed to load image");
+                    root.resolvedImageSource = root.imageUrl;
+                }
+            };
+            xhr.open("GET", root.imageUrl);
+            xhr.send();
             return;
         }
 
-        root.resolvedImageSource = "";
-        root.compatibilityLoading = true;
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState !== XMLHttpRequest.DONE || requestToken !== root.imageRequestToken) {
-                return;
-            }
-
-            root.compatibilityLoading = false;
-            if (xhr.status >= 200 && xhr.status < 300 && xhr.responseText) {
-                var sanitized = sanitizeSvgMarkup(xhr.responseText);
-                root.resolvedImageSource = "data:image/svg+xml;utf8," + encodeURIComponent(sanitized);
-            } else {
-                root.compatibilityError = true;
-                root.compatibilityErrorText = qsTr("Failed to load image");
-                root.resolvedImageSource = root.imageUrl;
-            }
-        };
-        xhr.open("GET", root.imageUrl);
-        xhr.send();
+        root.resolvedImageSource = root.imageUrl;
     }
 
     function handlePrimaryAction() {

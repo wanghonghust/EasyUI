@@ -20,7 +20,7 @@ else()
 endif()
 
 find_package(QWindowKit COMPONENTS Core Widgets Quick REQUIRED)
-find_package(Qt6 6.2 COMPONENTS Quick Qml REQUIRED)
+find_package(Qt6 6.2 COMPONENTS Quick Qml Network REQUIRED)
 
 # ── Library ──
 qt_add_library(EasyUI SHARED)
@@ -229,6 +229,7 @@ target_link_libraries(EasyUI
     PRIVATE
         Qt6::Quick
         Qt6::Qml
+        Qt6::Network
         QWindowKit::Core
         QWindowKit::Quick
 )

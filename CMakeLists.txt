@@ -17,7 +17,7 @@ if(QML_NO_CACHEGEN)
     set(QT_QML_NO_CACHEGEN ON CACHE BOOL "Disable QML cachegen" FORCE)
 endif()
 
-find_package(Qt6 6.8 COMPONENTS Quick Sql QuickControls2 REQUIRED)
+find_package(Qt6 6.8 COMPONENTS Quick Sql QuickControls2 Network REQUIRED)
 
 # 强制 Release 也生成调试信息
 if(MSVC)
