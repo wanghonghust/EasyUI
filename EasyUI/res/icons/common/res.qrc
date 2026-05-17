@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>chat.png</file>
+        <file>comdown.png</file>
+        <file>email.png</file>
+        <file>flag.png</file>
+        <file>home.png</file>
+        <file>lock.png</file>
+        <file>notification.png</file>
+        <file>paste.png</file>
+        <file>position.png</file>
+        <file>power.png</file>
+        <file>previous.png</file>
+        <file>print.png</file>
+        <file>refresh.png</file>
+        <file>reply.png</file>
+        <file>res.qrc</file>
+        <file>scale.png</file>
+        <file>storage.png</file>
+        <file>team.png</file>
+        <file>trash.png</file>
+        <file>trash_email.png</file>
+        <file>user_center.png</file>
+        <file>user_center1.png</file>
+    </qresource>
+</RCC>

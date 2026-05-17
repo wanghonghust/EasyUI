@@ -1,0 +1,21 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# QML/JS/C++ source
+*.qml text eol=lf
+*.js text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.cmake text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+
+# Binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.ttf binary
+*.lib binary
+*.dll binary
+*.db binary

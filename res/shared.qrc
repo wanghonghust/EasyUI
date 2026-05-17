@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>window-bar/close.svg</file>
+        <file>window-bar/fullscreen.svg</file>
+        <file>window-bar/maximize.svg</file>
+        <file>window-bar/minimize.svg</file>
+        <file>window-bar/restore.svg</file>
+        <file>window-bar/more-line.svg</file>
+        <file>window-bar/pin.svg</file>
+        <file>window-bar/pin-fill.svg</file>
+        <file>app/example.png</file>
+        <file>icons/send_dark.png</file>
+        <file>icons/send_light.png</file>
+        <file>icons/stop_dark.png</file>
+        <file>icons/stop_light.png</file>
+        <file alias="README.md">../README.md</file>
+    </qresource>
+</RCC>
