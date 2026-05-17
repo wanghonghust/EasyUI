@@ -213,12 +213,16 @@ Or use the convenience script:
 
 ### Build (Linux)
 
+> **Note:** Linux build has not been tested yet.
+
 ```bash
 cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
 ### Build (macOS)
+
+> **Note:** macOS build has not been tested yet.
 
 ```bash
 cmake -B build -S . -DCMAKE_BUILD_TYPE=Release

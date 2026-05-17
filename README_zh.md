@@ -212,12 +212,16 @@ cmake --build build
 
 ### 构建（Linux）
 
+> **注意：** Linux 构建尚未测试。
+
 ```bash
 cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
 ### 构建（macOS）
+
+> **注意：** macOS 构建尚未测试。
 
 ```bash
 cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
