@@ -50,6 +50,7 @@ Rectangle {
     property color altRowColor: EasyTheme.color.tableStrip
     property real maxHeight: -1
     property real rowHeight: 36
+    property var rowHeights: []
 
     // 分页
     property bool pagination: false
@@ -59,6 +60,8 @@ Rectangle {
     // 子项展开
     property bool expandable: false
     property string childrenProperty: "children"
+
+    property real headerHeight: rowHeight
 
     implicitHeight: height
 
@@ -154,7 +157,7 @@ Rectangle {
         if (pagination && !expandable) {
             bodyH = pageSize * root.rowHeight;
         } else {
-            bodyH = rowRepeater.count * root.rowHeight;
+            bodyH = root._totalBodyHeight;
         }
         var contentH = bodyH + headerRect.height + (paginationBar.visible ? 44 : 0);
         return maxHeight > 0 ? Math.min(maxHeight, contentH) : contentH;
@@ -177,7 +180,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: root.rowHeight
+        height: root.headerHeight
         color: root.headerColor
 
         Row {
@@ -266,7 +269,7 @@ Rectangle {
         anchors.bottom: paginationBar.visible ? paginationBar.top : parent.bottom
         clip: true
         contentWidth: availableWidth
-        contentHeight: rowRepeater.count * root.rowHeight
+        contentHeight: root._totalBodyHeight
 
         ScrollBar.vertical: EasyScrollBar { }
 
@@ -284,8 +287,8 @@ Rectangle {
                 Rectangle {
                     id: rowRect
                     width: contentArea.width
-                    height: root.rowHeight
-                    y: index * root.rowHeight
+                    height: root.getRowHeight(index)
+                    y: root.getRowY(index)
                     color: rowMouse.containsMouse && root.hoverHighlight
                            ? EasyTheme.color.hover
                            : (root._selectedSet[index] === true
@@ -358,13 +361,13 @@ Rectangle {
                         // 缩进间距（子行缩进）
                         Item {
                             width: root.expandable ? rowRect._depth * 24 : 0
-                            height: root.rowHeight
+                            height: rowRect.height
                         }
 
                         // 展开/折叠图标（始终占位 24px 以保持对齐）
                         Item {
                             width: root.expandable ? 24 : 0
-                            height: root.rowHeight
+                            height: rowRect.height
 
                             EasyIconFont {
                                 anchors.centerIn: parent
@@ -399,13 +402,13 @@ Rectangle {
                                 clip: true
                                 x: modelData.width > 0 ? 0 : 0
                                 width: modelData.width > 0 ? modelData.width : ((dataRow.width - root._totalFixedWidth - (root.expandable ? (rowRect._depth * 24 + 24) : 0)) / Math.max(1, root._autoColCount))
-                                height: root.rowHeight
+                                height: rowRect.height
 
                                 // 自定义 delegate
                                 Loader {
                                     x: root.cellPadding
                                     width: parent.width - root.cellPadding * 2
-                                    height: root.rowHeight
+                                    height: rowRect.height
                                     visible: root.delegate !== null
                                     sourceComponent: root.delegate
                                     property var columnData: modelData
@@ -414,13 +417,14 @@ Rectangle {
                                         var val = modelData.key !== undefined ? rowRect.rowData[modelData.key] : "";
                                         return val !== undefined && val !== null ? val : "";
                                     }
+                                    property real rowHeight: rowRect.height
                                 }
 
                                 // 默认 Text
                                 Text {
                                     x: root.cellPadding
                                     width: parent.width - root.cellPadding * 2
-                                    height: root.rowHeight
+                                    height: rowRect.height
                                     visible: root.delegate === null
                                     verticalAlignment: Text.AlignVCenter
                                     horizontalAlignment: modelData.align || Text.AlignLeft
@@ -512,5 +516,38 @@ Rectangle {
     // 供 delegate 内部修改行数据后调用，强制刷新表格
     function refresh() {
         _refreshToken++
+    }
+
+    // 获取行高（支持可变行高）
+    function getRowHeight(idx) {
+        if (rowHeights && idx >= 0 && idx < rowHeights.length)
+            return rowHeights[idx]
+        return root.rowHeight
+    }
+
+    // 获取行Y偏移（支持可变行高）
+    function getRowY(idx) {
+        if (!rowHeights || rowHeights.length === 0)
+            return idx * root.rowHeight
+        var y = 0
+        for (var i = 0; i < idx && i < rowHeights.length; i++)
+            y += rowHeights[i]
+        if (idx >= rowHeights.length) {
+            for (var i = rowHeights.length; i < idx; i++)
+                y += root.rowHeight
+        }
+        return y
+    }
+
+    // 表体总高度（支持可变行高）
+    readonly property real _totalBodyHeight: {
+        if (!rowHeights || rowHeights.length === 0) {
+            return rowRepeater.count * root.rowHeight
+        }
+        var total = 0
+        for (var i = 0; i < rowRepeater.count; i++) {
+            total += getRowHeight(i)
+        }
+        return total
     }
 }

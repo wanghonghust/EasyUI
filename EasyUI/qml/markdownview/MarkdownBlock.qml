@@ -18,6 +18,7 @@ Item {
 
     signal clicked(var block)
     signal copyRequested
+    signal imagePreviewRequested(string imageUrl, string displayText)
 
     onBlockDataChanged: {
         hovered = false
@@ -346,6 +347,7 @@ Item {
             rowBackground: root.style ? root.style.tableRowBackground : "#ffffff"
             rowAltBackground: root.style ? root.style.tableAltRowBackground : "#f6f8fa"
             isDark: root.style ? root.style.isDark : false
+            onPreviewRequested: (url, text) => root.imagePreviewRequested(url, text)
         }
     }
 
@@ -371,6 +373,7 @@ Item {
             blockData: root.blockData
             style: root.style
             autoWidth: root.autoWidth
+            onPreviewRequested: (url, text) => root.imagePreviewRequested(url, text)
         }
     }
 
@@ -381,6 +384,7 @@ Item {
             blockData: root.blockData
             style: root.style
             autoWidth: root.autoWidth
+            onPreviewRequested: (url, text) => root.imagePreviewRequested(url, text)
         }
     }
 }

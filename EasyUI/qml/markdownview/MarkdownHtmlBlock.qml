@@ -13,6 +13,8 @@ Item {
     property var style: null
     property bool autoWidth: false
 
+    signal previewRequested(string imageUrl, string displayText)
+
     // 可配置的边距（替代硬编码的 8）
     property real padding: 8
     property real topPadding: padding
@@ -249,6 +251,7 @@ Item {
                 style: root.style
                 autoWidth: root.autoWidth
                 showCaption: false
+                onPreviewRequested: (url, text) => root.previewRequested(url, text)
             }
         }
     }
@@ -308,6 +311,7 @@ Item {
                         style: root.style
                         autoWidth: root.autoWidth
                         showCaption: false
+                        onPreviewRequested: (url, text) => root.previewRequested(url, text)
                     }
                 }
             }

@@ -39,7 +39,7 @@ ScrollBar {
         implicitWidth: root.vertical ? root._effectiveSize : 30
         implicitHeight: root.vertical ? 30 : root._effectiveSize
         radius: 3
-        color: Qt.rgba(0.5, 0.5, 0.5, EasyTheme.isDark ? 0.45 : 0.28)
+        color: Qt.rgba(0.5, 0.5, 0.5, EasyTheme.isDark ? 0.45 : 0.42)
         opacity: root.pressed ? 0.9 : (root.hovered ? 0.7 : 1.0)
         Behavior on opacity { NumberAnimation { duration: 150 } }
         Behavior on implicitWidth { enabled: root.vertical; NumberAnimation { duration: 120; easing.type: Easing.OutCubic } }
